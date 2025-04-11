@@ -132,6 +132,7 @@ class moodle2notouser:
     def __init__(self, userpayload):
         try:
             self.id = userpayload["id"]
+            self.tuid = userpayload["tuid"]
             self.email = userpayload["primary_email"]
             self.auth_meth = userpayload["auth_method"]
         except Exception as e:
@@ -139,7 +140,7 @@ class moodle2notouser:
             self.errcode = 510
         n = notoUser()
         try:
-            self.NotoUser = n.userFromAPI(self.id, self.email)
+            self.NotoUser = n.userFromAPI(self.tuid, self.email)
             self.status = "OK"
             self.errcode = 0
         except Exception as e:
